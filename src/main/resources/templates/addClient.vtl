@@ -1,5 +1,13 @@
 addClient.vtl
 
+<h2>$stylist.getName()</h2>
 
+
+<form action="/:id" method="post">
+  <input id="stylistId" name="stylistId" type=hidden value="$stylist.getId()">
+  <label>Add a Client</label>
+  <input type="text" name="clientName" id="clientName" required>
+  <button type="submit" name="AddClientButton" class="btn btn-info">Submit</button>
+</form>
 
 <a href="/">Go Back Home</a>
