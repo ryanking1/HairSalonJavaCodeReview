@@ -62,4 +62,13 @@ public class Stylist {
         .executeAndFetch(Client.class);
     }
   }
+
+  public static void deleteStylist(int id) {
+      String sql = "DELETE FROM Stylists WHERE id=:id";
+      try(Connection con = DB.sql2o.open()) {
+        con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
 }
