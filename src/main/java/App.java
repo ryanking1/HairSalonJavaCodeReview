@@ -46,5 +46,19 @@ public class App {
       model.put("template", "templates/addClient.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
+      int id = Integer.parseInt(request.queryParams("stylistId"));
+      String clientName = request.queryParams("clientName");
+      Client newClient = new Client(clientName, id);
+      newClient.save();
+      List<Client> clients = stylist.getClients();
+      model.put("stylist", stylist);
+      model.put("clients", clients);
+      model.put("template", "templates/addClient.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
