@@ -43,4 +43,15 @@ public class Client {
              this.getStylistId() == newClient.getStylistId();
     }
   }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO clients(name, stylistId) VALUES (:name, :stylistId)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", name)
+        .addParameter("stylistId", stylistId)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }
