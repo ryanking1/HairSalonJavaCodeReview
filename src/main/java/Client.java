@@ -29,4 +29,18 @@ public class Client {
       return con.createQuery(sql).executeAndFetch(Client.class);
     }
   }
+
+  @Override
+  public boolean equals(Object otherClient){
+    if (!(otherClient instanceof Client)) {
+      return false;
+    } else {
+      Client newClient = (Client) otherClient;
+      System.out.println(this.getStylistId());
+      System.out.println(newClient.getStylistId());
+      return this.getName().equals(newClient.getName()) &&
+             this.getId() == newClient.getId() &&
+             this.getStylistId() == newClient.getStylistId();
+    }
+  }
 }
